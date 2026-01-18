@@ -24,6 +24,18 @@
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"value": "https://keyvault20260118.vault.azure.net/"
 		},
+		"AzureSqlDatabase_LS_properties_typeProperties_server": {
+			"value": "sqlserver202601182103.database.windows.net"
+		},
+		"AzureSqlDatabase_LS_properties_typeProperties_database": {
+			"value": "sqldb20260118"
+		},
+		"AzureSqlDatabase_LS_properties_typeProperties_userName": {
+			"value": "sqladmin"
+		},
+		"STORAGE_TRIGGER_FOR_JSON_properties_typeProperties_scope": {
+			"value": "/subscriptions/80772315-1636-4170-a04c-37ef241980e5/resourceGroups/resourcegroup2612250747/providers/Microsoft.Storage/storageAccounts/storage2026018"
+		},
 		"containerUri": {
 			"value": ""
 		},

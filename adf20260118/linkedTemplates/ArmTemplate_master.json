@@ -30,6 +30,22 @@
 			"type": "string",
 			"defaultValue": "https://keyvault20260118.vault.azure.net/"
 		},
+		"AzureSqlDatabase_LS_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sqlserver202601182103.database.windows.net"
+		},
+		"AzureSqlDatabase_LS_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "sqldb20260118"
+		},
+		"AzureSqlDatabase_LS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sqladmin"
+		},
+		"STORAGE_TRIGGER_FOR_JSON_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/80772315-1636-4170-a04c-37ef241980e5/resourceGroups/resourcegroup2612250747/providers/Microsoft.Storage/storageAccounts/storage2026018"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -68,6 +84,18 @@
 					},
 					"AmazonS3_LS_properties_typeProperties_accessKeyId": {
 						"value": "[parameters('AmazonS3_LS_properties_typeProperties_accessKeyId')]"
+					},
+					"AzureSqlDatabase_LS_properties_typeProperties_server": {
+						"value": "[parameters('AzureSqlDatabase_LS_properties_typeProperties_server')]"
+					},
+					"AzureSqlDatabase_LS_properties_typeProperties_database": {
+						"value": "[parameters('AzureSqlDatabase_LS_properties_typeProperties_database')]"
+					},
+					"AzureSqlDatabase_LS_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSqlDatabase_LS_properties_typeProperties_userName')]"
+					},
+					"STORAGE_TRIGGER_FOR_JSON_properties_typeProperties_scope": {
+						"value": "[parameters('STORAGE_TRIGGER_FOR_JSON_properties_typeProperties_scope')]"
 					}
 				}
 			},
