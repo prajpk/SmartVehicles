@@ -18,7 +18,7 @@
 					"source": {
 						"type": "JsonSource",
 						"storeSettings": {
-							"type": "AmazonS3ReadSettings",
+							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
 							"wildcardFileName": "*.json",
 							"enablePartitionDiscovery": false
@@ -40,13 +40,10 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "S3_DS",
+						"referenceName": "ADLS_DS",
 						"type": "DatasetReference",
 						"parameters": {
-							"folderPath": {
-								"value": "@formatDateTime(utcNow(), 'yyyy/MM/dd')",
-								"type": "Expression"
-							}
+							"folderPath": "landing"
 						}
 					}
 				],
