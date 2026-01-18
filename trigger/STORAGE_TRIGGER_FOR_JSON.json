@@ -1,0 +1,24 @@
+{
+	"name": "STORAGE_TRIGGER_FOR_JSON",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "adlsgen2_to_sql",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/input/blobs/staging/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/80772315-1636-4170-a04c-37ef241980e5/resourceGroups/resourcegroup2612250747/providers/Microsoft.Storage/storageAccounts/storage2026018",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
