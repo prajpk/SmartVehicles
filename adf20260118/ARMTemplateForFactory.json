@@ -45,6 +45,10 @@
 		"STORAGE_TRIGGER_FOR_JSON_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/80772315-1636-4170-a04c-37ef241980e5/resourceGroups/resourcegroup2612250747/providers/Microsoft.Storage/storageAccounts/storage2026018"
+		},
+		"storagetrigger2_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/80772315-1636-4170-a04c-37ef241980e5/resourceGroups/resourcegroup2612250747/providers/Microsoft.Storage/storageAccounts/storage2026018"
 		}
 	},
 	"variables": {
@@ -548,6 +552,110 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/adlsgen2_to_sql')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/storage_trigger_sample')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"wildcardFileName": "*.json",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "ADLS_DS",
+								"type": "DatasetReference",
+								"parameters": {
+									"folderPath": "landing"
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "ADLS_DS",
+								"type": "DatasetReference",
+								"parameters": {
+									"folderPath": {
+										"value": "@formatDateTime(utcNow(),'yyyy/MM/dd')",
+										"type": "Expression"
+									}
+								}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ADLS_DS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/storagetrigger2')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "storage_trigger_sample",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/input/blobs/",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('storagetrigger2_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/storage_trigger_sample')]"
 			]
 		}
 	]

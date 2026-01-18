@@ -46,6 +46,10 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/80772315-1636-4170-a04c-37ef241980e5/resourceGroups/resourcegroup2612250747/providers/Microsoft.Storage/storageAccounts/storage2026018"
 		},
+		"storagetrigger2_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/80772315-1636-4170-a04c-37ef241980e5/resourceGroups/resourcegroup2612250747/providers/Microsoft.Storage/storageAccounts/storage2026018"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -93,6 +97,9 @@
 					},
 					"AzureSqlDatabase_LS_properties_typeProperties_userName": {
 						"value": "[parameters('AzureSqlDatabase_LS_properties_typeProperties_userName')]"
+					},
+					"storagetrigger2_properties_typeProperties_scope": {
+						"value": "[parameters('storagetrigger2_properties_typeProperties_scope')]"
 					},
 					"STORAGE_TRIGGER_FOR_JSON_properties_typeProperties_scope": {
 						"value": "[parameters('STORAGE_TRIGGER_FOR_JSON_properties_typeProperties_scope')]"
